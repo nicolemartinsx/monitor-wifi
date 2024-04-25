@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitor de Rede WiFi</title>
+    <link rel="stylesheet" type="text/css" href="style/style.css">
+    <link rel="icon" href="images/favicon.ico">
+</head>
+
+<body>
+    <header>
+        <h1>
+            <img class="logo" src="images/logo.png" alt="Sinal Logo">
+            Monitor de Rede WIFI
+        </h1>
+        <div class=" header-menu">
+            <a class="headerbutton active" href="tabela.html">Tabela</a>
+            <a class="headerbutton" href="grafico.html">Gráficos</a>
+            <a class="headerbutton" href="mapa.html">Mapa de Calor</a>
+        </div>
+    </header>
+    <hr>
+
+    <button class="botao-azul">ADICIONAR COMÔDO</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">Local</th>
+                <th scope="col">Nível 2,4GHZ (DBM)</th>
+                <th scope="col">Nível 5GHZ (DBM)</th>
+                <th scope="col">Velocidade 2,4GHZ (Mbps)</th>
+                <th scope="col">Velocidade 5GHZ (Mbps)</th>
+                <th scope="col">Interferência</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Sala 1</td>
+                <td>-50</td>
+                <td>-60</td>
+                <td>100</td>
+                <td>200</td>
+                <td>Baixa</td>
+                <td><button><img src="images/edit.png"></button><button><img src="images/trash.png"></button></td>
+            </tr>
+            <tr>
+                <td>Sala 2</td>
+                <td>-60</td>
+                <td>-70</td>
+                <td>50</td>
+                <td>100</td>
+                <td>Média</td>
+                <td><button><img src="images/edit.png"></button><button><img src="images/trash.png"></button></td>
+            </tr>
+            <tr>
+                <td>Sala 3</td>
+                <td>-70</td>
+                <td>-80</td>
+                <td>20</td>
+                <td>50</td>
+                <td>Alta</td>
+                <td><button><img src="images/edit.png"></button><button><img src="images/trash.png"></button></td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
