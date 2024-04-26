@@ -23,8 +23,41 @@
     </header>
     <hr>
 
-    <button class="botao-azul">ADICIONAR COMÔDO</button>
+    <button id="btnModal" class="botao-azul addComodo">ADICIONAR COMÔDO</button>
+    <div id="modalForm" class="modal">
 
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Adicionar Cômodo</h2>
+            <form>
+                <div>
+                    <label for="local">Nome do Ambiente:</label>
+                    <input type="text" required>
+                </div>
+                <div>
+                    <label for="nivel2">Nível 2,4GHZ (DBM):</label>
+                    <input type="number" required>
+                </div>
+                <div>
+                    <label for="nivel5">Nível 5GHZ (DBM):</label>
+                    <input type="number" required>
+                </div>
+                <div>
+                    <label for="velocidade2">Velocidade 2,4GHZ (Mbps):</label>
+                    <input type="number" required>
+                </div>
+                <div>
+                    <label for="velocidade5">Velocidade 5GHZ (Mbps):</label>
+                    <input type="number" required>
+                </div>
+                <div>
+                    <label for="interferencia">Interferência:</label>
+                    <input type="number" required>
+                </div>
+                <button class="botao-azul add">ADICIONAR CÔMODO</button>
+        </div>
+
+    </div>
     <table>
         <thead>
             <tr>
@@ -68,4 +101,5 @@
         </tbody>
     </table>
 
+    <script src="js/modal.js"></script>
 </body>
