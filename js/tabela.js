@@ -5,6 +5,7 @@ var editIndexInput = document.getElementById("editIndex"); // Input para armazen
 
 var btn = document.getElementById("btnModal");
 btn.onclick = function () {
+    document.getElementById('modal-title').textContent = 'Adicionar cômodo';
     modal.style.display = "flex";
 }
 
@@ -34,18 +35,18 @@ function adicionarComodo(event) {
         return false;
     }
 
-    if (nivel2 > 0 || (nivel5  > 0 && nivel5 != '')) {
+    if (nivel2 > 0 || (nivel5 > 0 && nivel5 != '')) {
         showError('Por favor, preencha os valores de nível de sinal apenas com valores negativos');
         return false;
     }
-    
+
     if (velocidade2 < 1 || (velocidade5 < 1 && velocidade5 != '')) {
         showError('Por favor, preencha os valores de velocidade apenas com valores maior que 1');
         return false;
     }
-    
+
     if (checkRow(local, nivel2, nivel5, velocidade2, velocidade5, interferencia) && !editIndexInput.value) {
-        showConfirmationModal('Já existe um cômodo com o mesmo local e os dados serão substituidos. Deseja confirmar a ação?', function () {
+        showConfirmationModal('Já existe um cômodo com o mesmo nome e os dados serão substituidos. Deseja confirmar a ação?', function () {
             editRow(local, nivel2, nivel5, velocidade2, velocidade5, interferencia, checkRow(local, nivel2, nivel5, velocidade2, velocidade5, interferencia));
         });
     } else if (editIndexInput.value) {
@@ -63,6 +64,12 @@ function adicionarComodo(event) {
             interferencia: interferencia
         };
         addRowToTable(newComodo);
+
+        var comodosSalvos = localStorage.getItem('comodos');
+        var comodos = comodosSalvos ? JSON.parse(comodosSalvos) : [];
+        comodos.push(newComodo);
+        localStorage.setItem('comodos', JSON.stringify(comodos));
+
         clearValues();
         modal.style.display = "none";
     }
@@ -72,20 +79,33 @@ function adicionarComodo(event) {
 function editRow(local, nivel2, nivel5, velocidade2, velocidade5, interferencia, rowData) {
 
     showConfirmationModal('Deseja salvar as alterações?', function () {
-    if (nivel5 == '' || velocidade5 == '') {
-        nivel5 = 'N/A';
-        velocidade5 = 'N/A';
-    }
-    rowData[0].innerHTML = local; 
-    rowData[1].innerHTML = nivel2;
-    rowData[2].innerHTML = nivel5;
-    rowData[3].innerHTML = velocidade2;
-    rowData[4].innerHTML = velocidade5;
-    rowData[5].innerHTML = interferencia;
+        if (nivel5 == '' || velocidade5 == '') {
+            nivel5 = 'N/A';
+            velocidade5 = 'N/A';
+        }
+        rowData[0].innerHTML = local;
+        rowData[1].innerHTML = nivel2;
+        rowData[2].innerHTML = nivel5;
+        rowData[3].innerHTML = velocidade2;
+        rowData[4].innerHTML = velocidade5;
+        rowData[5].innerHTML = interferencia;
 
-    clearValues();
-    modal.style.display = "none";
-    editIndexInput.value = ''; 
+        var comodosSalvos = localStorage.getItem('comodos');
+        var comodos = comodosSalvos ? JSON.parse(comodosSalvos) : [];
+        var rowIndex = parseInt(editIndexInput.value); // indice da linha a ser editada
+        comodos[rowIndex] = {
+            local: local,
+            nivel2: nivel2,
+            nivel5: nivel5,
+            velocidade2: velocidade2,
+            velocidade5: velocidade5,
+            interferencia: interferencia
+        };
+        localStorage.setItem('comodos', JSON.stringify(comodos));
+
+        clearValues();
+        modal.style.display = "none";
+        editIndexInput.value = '';
     });
 }
 
@@ -130,6 +150,7 @@ function addRowToTable(comodo) {
     // Adiciona um evento de clique à imagem de edição
     var editBtn = cell7.querySelector('.edit-btn');
     editBtn.addEventListener('click', function () {
+        document.getElementById('modal-title').textContent = 'Editar cômodo';
         var rowIndex = this.parentNode.parentNode.rowIndex;
         rowIndex--; // Decrementa o indice da linha para corresponder ao índice do array
         editIndexInput.value = rowIndex;
@@ -147,10 +168,17 @@ function addRowToTable(comodo) {
     // Adiciona um evento de clique à imagem de exclusão
     var deleteBtn = cell7.querySelector('.delete-btn');
     deleteBtn.addEventListener('click', function () {
-        var rowToDelete = this.closest('tr'); 
+        var rowToDelete = this.closest('tr');
+
         showConfirmationModal("Tem certeza de que deseja excluir este cômodo?", function () {
             if (rowToDelete) {
-                rowToDelete.parentNode.removeChild(rowToDelete);
+                var rowIndex = rowToDelete.rowIndex - 1; // indice da linha a ser excluída
+                rowToDelete.remove();
+                var comodosSalvos = localStorage.getItem('comodos');
+                var comodos = comodosSalvos ? JSON.parse(comodosSalvos) : [];
+                comodos.splice(rowIndex, 1);
+                localStorage.setItem('comodos', JSON.stringify(comodos));
+
                 verificarTabelaVazia();
             } else {
                 console.log('A linha não existe na tabela.');
@@ -171,7 +199,6 @@ function clearValues() {
     document.getElementById('interferencia').value = '';
     editIndexInput.value = ''; // Limpa o índice da linha sendo editada
 }
-clearValues();
 
 function showError(message) {
     divError.style.display = 'block';
@@ -188,13 +215,13 @@ function verificarTabelaVazia() {
         var message = document.createElement('h2');
         message.id = 'emptyMessage';
         message.textContent = 'Comece adicionando o primeiro cômodo.';
-        table.parentNode.insertBefore(message, table.nextSibling); 
+        table.parentNode.insertBefore(message, table.nextSibling);
     } else {
         // A tabela não está vazia, mostra o cabeçalho e remove a mensagem
-        thead.style.display = 'table-header-group'; 
+        thead.style.display = 'table-header-group';
         var message = table.parentNode.querySelector('#emptyMessage');
         if (message) {
-            message.parentNode.removeChild(message); 
+            message.parentNode.removeChild(message);
         }
     }
 }
@@ -226,3 +253,12 @@ function showConfirmationModal(message, callbackYes, callbackNo) {
     });
 }
 
+var comodosSalvos = localStorage.getItem('comodos');
+if (comodosSalvos) {
+    var comodos = JSON.parse(comodosSalvos);
+    comodos.forEach(function (comodo) {
+        addRowToTable(comodo);
+    });
+}
+
+clearValues(); // Verifica se a tabela está vazia e exibe a mensagem apropriada

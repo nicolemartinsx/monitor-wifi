@@ -208,11 +208,7 @@ input::-webkit-inner-spin-button {
 }
 
 #errorMessage {
-    background: #FFA500;
-    padding-top: 10px;
-    padding-left: 5px;
-    padding-bottom: 10px;
-    border-radius: 4px;
+    color: #964b45;
     justify-content: center;
     height: auto;
     width: fit-content;
@@ -265,12 +261,12 @@ input::-webkit-inner-spin-button {
 }
 
 #confirmationModal button#confirmYes {
-    background-color: #4CAF50;
+    background-color: #507251;
     color: white;
 }
 
 #confirmationModal button#confirmNo {
-    background-color: #f44336;
+    background-color: #964b45;
     color: white;
 }
 

@@ -25,20 +25,20 @@
 
     <div id="confirmationModal" class="modal">
         <div class="modal-content">
-          <p id="confirmationMessage"></p>
-          <div>
-            <button id="confirmYes">SIM</button>
-            <button id="confirmNo">NÃO</button>
-          </div>
+            <p id="confirmationMessage"></p>
+            <div>
+                <button id="confirmYes">SIM</button>
+                <button id="confirmNo">NÃO</button>
+            </div>
         </div>
-      </div>
+    </div>
 
-    <button id="btnModal" class="botao-azul addComodo">ADICIONAR COMÔDO</button>
+    <button id="btnModal" class="botao-azul addComodo">ADICIONAR cômodo</button>
     <div id="modalForm" class="modal">
 
         <div class="modal-content">
             <span class="close">&times;</span>
-            <h2>Adicionar Cômodo</h2>
+            <h2 id="modal-title">Adicionar Cômodo</h2>
             <div id="errorDiv" style="display: none;">
                 <p id="errorMessage">
                 </p>
@@ -50,23 +50,23 @@
                 </div>
                 <div>
                     <label for="nivel2">Nível 2,4GHZ (DBM): *</label>
-                    <input id="nivel2" type="number">
+                    <input id="nivel2" type="number" step="0.01">
                 </div>
                 <div>
                     <label for="nivel5">Nível 5GHZ (DBM):</label>
-                    <input id="nivel5" type="number">
+                    <input id="nivel5" type="number" step="0.01">
                 </div>
                 <div>
                     <label for="velocidade2">Velocidade 2,4GHZ (Mbps): *</label>
-                    <input id="velocidade2" type="number">
+                    <input id="velocidade2" type="number" step="0.01">
                 </div>
                 <div>
                     <label for="velocidade5">Velocidade 5GHZ (Mbps):</label>
-                    <input id="velocidade5" type="number">
+                    <input id="velocidade5" type="number" step="0.01">
                 </div>
                 <div>
                     <label for="interferencia">Interferência:</label>
-                    <input id="interferencia" type="number">
+                    <input id="interferencia" type="number" step="0.01">
                 </div>
                 <span class="information">* Campos obrigatórios <br>
                     Caso os campos de nível e velocidade 5G não sejam preenchidos, será considerado que a rede não possui esse sinal.</span>
@@ -90,5 +90,5 @@
         </tbody>
     </table>
 
-    <script src="js/modal.js"></script>
+    <script src="js/tabela.js"></script>
 </body>
