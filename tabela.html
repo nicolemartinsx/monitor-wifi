@@ -23,42 +23,58 @@
     </header>
     <hr>
 
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+          <p id="confirmationMessage"></p>
+          <div>
+            <button id="confirmYes">SIM</button>
+            <button id="confirmNo">NÃO</button>
+          </div>
+        </div>
+      </div>
+
     <button id="btnModal" class="botao-azul addComodo">ADICIONAR COMÔDO</button>
     <div id="modalForm" class="modal">
 
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2>Adicionar Cômodo</h2>
-            <form>
+            <div id="errorDiv" style="display: none;">
+                <p id="errorMessage">
+                </p>
+            </div>
+            <form onsubmit="adicionarComodo(event)">
                 <div>
-                    <label for="local">Nome do Ambiente:</label>
-                    <input type="text" required>
+                    <label for="local">Nome do Ambiente: *</label>
+                    <input id="local" type="text" required>
                 </div>
                 <div>
-                    <label for="nivel2">Nível 2,4GHZ (DBM):</label>
-                    <input type="number" required>
+                    <label for="nivel2">Nível 2,4GHZ (DBM): *</label>
+                    <input id="nivel2" type="number">
                 </div>
                 <div>
                     <label for="nivel5">Nível 5GHZ (DBM):</label>
-                    <input type="number" required>
+                    <input id="nivel5" type="number">
                 </div>
                 <div>
-                    <label for="velocidade2">Velocidade 2,4GHZ (Mbps):</label>
-                    <input type="number" required>
+                    <label for="velocidade2">Velocidade 2,4GHZ (Mbps): *</label>
+                    <input id="velocidade2" type="number">
                 </div>
                 <div>
                     <label for="velocidade5">Velocidade 5GHZ (Mbps):</label>
-                    <input type="number" required>
+                    <input id="velocidade5" type="number">
                 </div>
                 <div>
                     <label for="interferencia">Interferência:</label>
-                    <input type="number" required>
+                    <input id="interferencia" type="number">
                 </div>
-                <button class="botao-azul add">ADICIONAR CÔMODO</button>
+                <span class="information">* Campos obrigatórios <br>
+                    Caso os campos de nível e velocidade 5G não sejam preenchidos, será considerado que a rede não possui esse sinal.</span>
+                <input type="hidden" id="editIndex">
+                <button class="botao-azul add">SALVAR CÔMODO</button>
         </div>
-
     </div>
-    <table>
+    <table id="comodosTable">
         <thead>
             <tr>
                 <th scope="col">Local</th>
@@ -71,33 +87,6 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Sala 1</td>
-                <td>-50</td>
-                <td>-60</td>
-                <td>100</td>
-                <td>200</td>
-                <td>Baixa</td>
-                <td><button><img src="images/edit.png"></button><button><img src="images/trash.png"></button></td>
-            </tr>
-            <tr>
-                <td>Sala 2</td>
-                <td>-60</td>
-                <td>-70</td>
-                <td>50</td>
-                <td>100</td>
-                <td>Média</td>
-                <td><button><img src="images/edit.png"></button><button><img src="images/trash.png"></button></td>
-            </tr>
-            <tr>
-                <td>Sala 3</td>
-                <td>-70</td>
-                <td>-80</td>
-                <td>20</td>
-                <td>50</td>
-                <td>Alta</td>
-                <td><button><img src="images/edit.png"></button><button><img src="images/trash.png"></button></td>
-            </tr>
         </tbody>
     </table>
 
