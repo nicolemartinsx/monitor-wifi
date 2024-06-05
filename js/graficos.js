@@ -35,6 +35,8 @@ addGrafico('myChartInterferencia-1', 'bar','Graficos local interferencia',yDataI
 addGrafico('myChartVelocidade-1', 'bar','Graficos local velocidade 2hz',yDataVelocidade2hz);
 addGrafico('myChartVelocidade-2', 'bar','Graficos local velocidade 5hz',yDataVelocidade5hz);
 
+addGraficoComparativo('myChartVelocidadeComparativo', 'line','Graficos local comparativo',yDataVelocidade5hz,yDataVelocidade2hz);
+
 function addGrafico(nome, typeChart, nomeGrafico, yData){
     var ctx = document.getElementById(nome);
     new Chart(ctx, {
@@ -56,6 +58,69 @@ function addGrafico(nome, typeChart, nomeGrafico, yData){
         }
       });
 }
+
+function addGraficoComparativo(nome, typeChart, nomeGrafico, yData1,yData2){
+    const labels = xlabel;
+    const data = {
+        labels: labels,
+        datasets: [
+          {
+            label: "2hz",
+            data: yData1,
+            yAxisID: 'y',
+          },
+          {
+            label: "5hz",
+            data: yData2,
+            yAxisID: 'y1',
+          }
+        ]
+      }
+
+    var ctx = document.getElementById(nome);
+    new Chart(ctx, {
+        type: typeChart,
+        data: data,
+        options: {
+          responsive: true,
+          interaction: {
+            mode: 'index',
+            intersect: false,
+          },
+          stacked: false,
+          plugins: {
+            title: {
+              display: true,
+              text: nomeGrafico
+            }
+          },
+          scales: {
+            y: {
+              type: 'linear',
+              display: true,
+              position: 'left',
+            },
+            y1: {
+              type: 'linear',
+              display: true,
+              position: 'right',
+              grid: {
+                drawOnChartArea: false, // only want the grid lines for one axis to show up
+              },
+            },
+          }
+        },
+      });
+}
+
+
+
+
+    
+
+
+
+
 
 
 
