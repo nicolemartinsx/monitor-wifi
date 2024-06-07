@@ -1,7 +1,26 @@
-#divGrafico {
-  margin: 20px;
 
-  position: relative;
-  float: left;
+#divGrafico{
+margin: 20px;
+width: 200;
+position: relative;
+float: left;
 
+}
+
+.canvas-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+}
+
+.canvas-grid > div {
+  display: flex;
+  justify-content: center;
+
+}
+
+.canvas-grid canvas {
+  margin-right: 20px;
+  max-width: 100%;
+  height: auto;
 }
