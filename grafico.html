@@ -13,7 +13,7 @@
 </head>
 
 <body>
-
+    
     <header>
         <h1>
             <img class="logo" src="images/logo.png" alt="Sinal Logo">
@@ -22,24 +22,25 @@
         <div class=" header-menu">
             <a class="headerbutton" href="tabela.html">Tabela</a>
             <a class="headerbutton active" href="grafico.html">Gráficos</a>
-            <a class="headerbutton" href="">Mapa de Calor</a>
+            <a class="headerbutton" href="mapa.html">Mapa de Calor</a>
         </div>
     </header>
 
     <hr>
-    <div id="divGrafico"><canvas id="myChart" canvas></div>
-    <div id="divGrafico"><canvas id="myChart2"></canvas></div>
 
-    <div id="divGrafico"><canvas id="myChartInterferencia-1"></canvas></div>
+    <DIV class = "canvas-grid">
+        <DIV id = "divGrafico"><canvas id = "myChart"  canvas></DIV>
+        <DIV id = "divGrafico"><canvas id = "myChart2"  ></canvas></DIV>
 
-    <div id="divGrafico"><canvas id="myChartVelocidade-1"></canvas></div>
-    <div id="divGrafico"><canvas id="myChartVelocidade-2"></canvas></div>
-    <div id="divGrafico"><canvas id="myChartVelocidadeComparativo"></canvas></div>
+        <DIV id = "divGrafico"><canvas id = "myChartInterferencia-1"  ></canvas></DIV>
 
-    </script>
-
+        <DIV id = "divGrafico"><canvas id = "myChartVelocidade-1"  ></canvas></DIV>
+        <DIV id = "divGrafico"><canvas id = "myChartVelocidade-2"  ></canvas></DIV>
+        <DIV id = "divGrafico"><canvas id = "myChartVelocidadeComparativo"  ></canvas></DIV>
+    </DIV>
+        </script>
+       
     </div>
 </body>
 <script src="js/graficos.js"></script>
-
 </html>
