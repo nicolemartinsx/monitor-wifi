@@ -1,13 +1,7 @@
-canvas {
+#divGrafico {
+  margin: 20px;
 
-
-
-  
-  }
-#divGrafico{
-margin: 20px;
-
-position: relative;
-float: left;
+  position: relative;
+  float: left;
 
 }
